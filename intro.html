@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>진용욱 | 개발자 포트폴리오</title>
-    <!-- Tailwind CSS CDN -->
+    <title>진용욱 | 소개</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -26,23 +25,35 @@
     </script>
     
     <style>
-        /* 다국어 선택적 노출을 위한 CSS 규칙 (Tailwind와 상호보완) */
+        /* 다국어 선택적 노출을 위한 CSS 규칙 */
         body.lang-ko .lang-en { display: none !important; }
         body.lang-en .lang-ko { display: none !important; }
         
-        /* 폰트 최적화 및 기본 트랜지션 부드럽게 설정 */
+        /* 부드러운 전환 효과 글로벌 적용 */
         *, *::before, *::after {
             transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, fill 0.3s ease, stroke 0.3s ease;
         }
     </style>
-</head>
-<body class="lang-ko bg-slate-50 dark:bg-[#090d16] text-slate-900 dark:text-slate-50 font-sans antialiased overflow-x-hidden">
 
-    <!-- Header Component -->
+    <script>
+        // 화면이 로드되기 전에 테마 상태를 선제 적용하여 흰색 깜빡임(Flash) 방지
+        (function() {
+            const savedTheme = localStorage.getItem('portfolio-theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        })();
+    </script>
+</head>
+<body class="lang-ko bg-slate-50 dark:bg-[#090d16] text-slate-900 dark:text-slate-50 font-sans antialiased overflow-x-hidden min-h-screen flex flex-col justify-between">
+
     <header id="header" class="fixed top-0 left-0 w-full bg-white/80 dark:bg-[#111827]/80 backdrop-blur-md border-b border-slate-200 dark:border-gray-800 z-50 transition-shadow duration-300">
-        <div class="max-w-[1100px] mx-auto px-6 h-18 flex justify-between items-center">
+        <div class="max-w-[1100px] mx-auto px-6 h-20 flex justify-between items-center">
             <!-- Brand Logo -->
-            <a href="#" class="flex items-center gap-2 text-lg font-extrabold text-sky-600 dark:text-sky-400 tracking-tight transition-transform duration-300 hover:scale-105 group">
+            <a href="index.html" class="flex items-center gap-2 text-lg font-extrabold text-sky-600 dark:text-sky-400 tracking-tight transition-transform duration-300 hover:scale-105 group">
                 <svg class="w-7 h-7 stroke-[2.5] stroke-sky-600 dark:stroke-sky-400 fill-none transition-transform duration-500 group-hover:rotate-[20deg]" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
                     <path d="m8 3 4 8 5-5 5 15H2L8 3z"/>
                 </svg>
@@ -50,42 +61,31 @@
             </a>
             
             <div class="flex items-center gap-6">
-                <!-- Navigation Menu (Desktop) -->
-                <ul id="nav-menu" class="hidden md:flex items-center gap-6 list-none">
-                    <li class="relative group">
-                        <a href="#" class="nav-link text-slate-600 dark:text-slate-300 font-semibold text-sm transition-colors duration-300 hover:text-sky-600 dark:hover:text-sky-400 py-2 px-1">
+                <!-- Navigation Menu (Desktop) - intro.html 활성화(Active) 처리 완료 -->
+                <ul id="nav-menu" class="hidden md:flex items-center gap-6 list-none h-full m-0 p-0">
+                    <li class="relative h-full flex items-center">
+                        <a href="index.html" class="text-slate-600 dark:text-slate-300 font-semibold text-sm transition-colors duration-300 hover:text-sky-600 dark:hover:text-sky-400 py-2 px-1 border-b-2 border-transparent">
                             <span class="lang-ko">홈</span>
                             <span class="lang-en">Home</span>
                         </a>
-                        <span class="absolute bottom-0 left-0 w-full h-[2px] bg-sky-600 dark:bg-sky-400 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-right group-hover:origin-left"></span>
                     </li>
-                    <li class="relative group">
-                        <a href="#about" class="nav-link text-slate-600 dark:text-slate-300 font-semibold text-sm transition-colors duration-300 hover:text-sky-600 dark:hover:text-sky-400 py-2 px-1">
+                    <li class="relative h-full flex items-center">
+                        <a href="intro.html" class="text-sky-600 dark:text-sky-400 font-extrabold border-sky-600 dark:border-sky-400 py-2 px-1 border-b-2">
                             <span class="lang-ko">소개</span>
                             <span class="lang-en">About</span>
                         </a>
-                        <span class="absolute bottom-0 left-0 w-full h-[2px] bg-sky-600 dark:bg-sky-400 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-right group-hover:origin-left"></span>
                     </li>
-                    <li class="relative group">
-                        <a href="#gallery" class="nav-link text-slate-600 dark:text-slate-300 font-semibold text-sm transition-colors duration-300 hover:text-sky-600 dark:hover:text-sky-400 py-2 px-1">
+                    <li class="relative h-full flex items-center">
+                        <a href="gallery.html" class="text-slate-600 dark:text-slate-300 font-semibold text-sm transition-colors duration-300 hover:text-sky-600 dark:hover:text-sky-400 py-2 px-1 border-b-2 border-transparent">
                             <span class="lang-ko">갤러리</span>
                             <span class="lang-en">Gallery</span>
                         </a>
-                        <span class="absolute bottom-0 left-0 w-full h-[2px] bg-sky-600 dark:bg-sky-400 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-right group-hover:origin-left"></span>
                     </li>
-                    <li class="relative group">
-                        <a href="#strengths" class="nav-link text-slate-600 dark:text-slate-300 font-semibold text-sm transition-colors duration-300 hover:text-sky-600 dark:hover:text-sky-400 py-2 px-1">
-                            <span class="lang-ko">강점</span>
-                            <span class="lang-en">Strengths</span>
-                        </a>
-                        <span class="absolute bottom-0 left-0 w-full h-[2px] bg-sky-600 dark:bg-sky-400 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-right group-hover:origin-left"></span>
-                    </li>
-                    <li class="relative group">
-                        <a href="#contact" class="nav-link text-slate-600 dark:text-slate-300 font-semibold text-sm transition-colors duration-300 hover:text-sky-600 dark:hover:text-sky-400 py-2 px-1">
+                    <li class="relative h-full flex items-center">
+                        <a href="contact.html" class="text-slate-600 dark:text-slate-300 font-semibold text-sm transition-colors duration-300 hover:text-sky-600 dark:hover:text-sky-400 py-2 px-1 border-b-2 border-transparent">
                             <span class="lang-ko">연락처</span>
                             <span class="lang-en">Contact</span>
                         </a>
-                        <span class="absolute bottom-0 left-0 w-full h-[2px] bg-sky-600 dark:bg-sky-400 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-right group-hover:origin-left"></span>
                     </li>
                 </ul>
 
@@ -93,7 +93,7 @@
                 <div class="flex items-center gap-3 border-l border-slate-200 dark:border-gray-800 pl-5">
                     <!-- Theme Toggle -->
                     <button id="theme-toggle" class="relative overflow-hidden w-9 h-9 rounded-full border border-slate-200 dark:border-gray-800 text-slate-600 dark:text-slate-300 flex items-center justify-center cursor-pointer transition-all duration-300 hover:bg-slate-200 dark:hover:bg-gray-800 hover:text-sky-600 dark:hover:text-sky-400 hover:-translate-y-0.5" aria-label="Toggle Theme">
-                        <!-- Sun Icon (Light) -->
+                        <!-- Sun Icon (Light Mode) -->
                         <svg class="lang-ko w-[18px] h-[18px] fill-none stroke-current stroke-2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
                             <circle cx="12" cy="12" r="5"></circle>
                             <line x1="12" y1="1" x2="12" y2="3"></line>
@@ -105,7 +105,7 @@
                             <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
                             <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
                         </svg>
-                        <!-- Moon Icon (Dark) -->
+                        <!-- Moon Icon (Dark Mode) -->
                         <svg class="lang-en w-[18px] h-[18px] fill-none stroke-current stroke-2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                         </svg>
@@ -128,341 +128,192 @@
         </div>
 
         <!-- Mobile Navigation Drawer Overlay -->
-        <div id="mobile-menu-overlay" class="fixed top-18 left-[-100%] w-full h-[calc(100vh-4.5rem)] bg-white dark:bg-[#111827] flex md:hidden flex-col items-center justify-start pt-12 gap-8 transition-all duration-500 ease-out shadow-2xl border-t border-slate-200 dark:border-gray-800">
-            <a href="#" class="nav-link text-slate-600 dark:text-slate-300 font-semibold text-xl transition-colors hover:text-sky-600 dark:hover:text-sky-400">
+        <div id="mobile-menu-overlay" class="fixed top-20 left-[-100%] w-full h-[calc(100vh-5rem)] bg-white dark:bg-[#111827] flex md:hidden flex-col items-center justify-start pt-12 gap-8 transition-all duration-500 ease-out shadow-2xl border-t border-slate-200 dark:border-gray-800">
+            <a href="index.html" class="text-slate-600 dark:text-slate-300 font-semibold text-xl transition-colors hover:text-sky-600 dark:hover:text-sky-400 py-1 px-3 border-b-2 border-transparent">
                 <span class="lang-ko">홈</span>
                 <span class="lang-en">Home</span>
             </a>
-            <a href="#about" class="nav-link text-slate-600 dark:text-slate-300 font-semibold text-xl transition-colors hover:text-sky-600 dark:hover:text-sky-400">
+            <a href="intro.html" class="text-sky-600 dark:text-sky-400 font-extrabold text-xl py-1 px-3 border-b-2 border-sky-600 dark:border-sky-400">
                 <span class="lang-ko">소개</span>
                 <span class="lang-en">About</span>
             </a>
-            <a href="#gallery" class="nav-link text-slate-600 dark:text-slate-300 font-semibold text-xl transition-colors hover:text-sky-600 dark:hover:text-sky-400">
+            <a href="gallery.html" class="text-slate-600 dark:text-slate-300 font-semibold text-xl transition-colors hover:text-sky-600 dark:hover:text-sky-400 py-1 px-3 border-b-2 border-transparent">
                 <span class="lang-ko">갤러리</span>
                 <span class="lang-en">Gallery</span>
             </a>
-            <a href="#strengths" class="nav-link text-slate-600 dark:text-slate-300 font-semibold text-xl transition-colors hover:text-sky-600 dark:hover:text-sky-400">
-                <span class="lang-ko">강점</span>
-                <span class="lang-en">Strengths</span>
-            </a>
-            <a href="#contact" class="nav-link text-slate-600 dark:text-slate-300 font-semibold text-xl transition-colors hover:text-sky-600 dark:hover:text-sky-400">
+            <a href="contact.html" class="text-slate-600 dark:text-slate-300 font-semibold text-xl transition-colors hover:text-sky-600 dark:hover:text-sky-400 py-1 px-3 border-b-2 border-transparent">
                 <span class="lang-ko">연락처</span>
                 <span class="lang-en">Contact</span>
             </a>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="relative overflow-hidden bg-gradient-to-br from-white to-sky-50/50 dark:from-gray-900 dark:to-[#090d16] pt-44 pb-32 text-center" id="home">
-        <!-- Visual Blur Accents for Hero Section -->
-        <div class="absolute -top-[10%] -right-[5%] w-[300px] h-[300px] rounded-full bg-sky-600/5 dark:bg-sky-400/5 blur-3xl pointer-events-none"></div>
-        <div class="absolute -bottom-[5%] -left-[5%] w-[400px] h-[400px] rounded-full bg-sky-600/5 dark:bg-sky-400/3 blur-3xl pointer-events-none"></div>
+    <!-- Main Content Container -->
+    <main class="flex-grow pt-20">
 
-        <div class="max-w-[1100px] mx-auto px-6">
-            <div class="inline-block px-5 py-1.5 bg-sky-100 dark:bg-sky-950/60 text-sky-600 dark:text-sky-400 rounded-full text-xs font-bold mb-6 shadow-sm">
-                <span class="lang-ko">SSAFY 16기 예비 개발자</span>
-                <span class="lang-en">SSAFY 16th Candidate Developer</span>
-            </div>
-            <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight text-slate-900 dark:text-white mb-6">
-                <span class="lang-ko">매일 발전하는<br><span class="text-sky-600 dark:text-sky-400 inline-block relative">준비된 개발자 진용욱</span>입니다.</span>
-                <span class="lang-en">Everyday growing<br><span class="text-sky-600 dark:text-sky-400 inline-block relative">Prepared Developer Yongwook</span>.</span>
-            </h1>
-            <p class="text-lg md:text-xl text-slate-600 dark:text-slate-300 max-w-[700px] mx-auto mb-10 leading-relaxed font-normal">
-                <span class="lang-ko">성장에 목마른 태도로 매일 견고한 코드를 작성해 나가고 있습니다.</span>
-                <span class="lang-en">With a thirsty attitude for growth, I write robust code every single day.</span>
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center items-stretch sm:items-center max-w-[320px] sm:max-w-none mx-auto">
-                <a href="#about" class="inline-flex items-center justify-center px-7 py-3 rounded-full text-sm font-semibold transition-all duration-300 transform hover:-translate-y-1 hover:scale-[1.02] bg-sky-600 text-white shadow-lg shadow-sky-600/20 hover:shadow-sky-600/35 active:translate-y-0">
-                    <span class="lang-ko">자세히 알아보기</span>
-                    <span class="lang-en">Get Started</span>
-                </a>
-                <a href="#contact" class="inline-flex items-center justify-center px-7 py-3 rounded-full text-sm font-semibold transition-all duration-300 transform hover:-translate-y-1 hover:scale-[1.02] border-2 border-sky-600 text-sky-600 dark:border-sky-400 dark:text-sky-400 hover:bg-sky-100 dark:hover:bg-sky-900/50 hover:text-sky-700 dark:hover:text-sky-300 active:translate-y-0">
-                    <span class="lang-ko">함께 일하기</span>
-                    <span class="lang-en">Contact Me</span>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section class="py-28 relative" id="about">
-        <div class="max-w-[1100px] mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-2 relative inline-block after:content-[''] after:block after:w-10 after:h-[3px] after:bg-sky-600 dark:after:bg-sky-400 after:mx-auto after:mt-3 after:rounded-sm">
-                    <span class="lang-ko">소개</span>
-                    <span class="lang-en">About Me</span>
-                </h2>
-                <p class="text-slate-500 dark:text-slate-400 text-base md:text-lg mt-3">
-                    <span class="lang-ko">기본을 탄탄하게, 소통은 유연하게</span>
-                    <span class="lang-en">Robust basics, flexible communication</span>
-                </p>
-            </div>
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-                <!-- Color-Box Avatar Placeholder -->
-                <div class="lg:col-span-5 flex justify-center">
-                    <div class="relative overflow-hidden w-full aspect-square max-w-[360px] bg-gradient-to-br from-sky-100 to-sky-200 dark:from-sky-950 dark:to-sky-900 rounded-3xl flex flex-col items-center justify-center text-sky-600 dark:text-sky-400 border-4 border-white dark:border-gray-900 shadow-2xl transition-all duration-500 hover:-translate-y-1.5 hover:rotate-1 hover:shadow-sky-500/10 dark:hover:shadow-sky-400/5 group">
-                        <svg class="w-20 h-20 mb-4 opacity-85 transition-transform duration-500 group-hover:scale-110 fill-none stroke-current stroke-[1.5]" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                            <circle cx="12" cy="7" r="4"></circle>
-                        </svg>
-                        <span class="font-bold text-base bg-white dark:bg-gray-800 text-slate-800 dark:text-slate-200 px-5 py-1.5 rounded-full shadow-sm">진용욱 (YongWook)</span>
+        <section class="max-w-[1100px] mx-auto px-6 py-16 md:py-24">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left: Interactive Visual Box Placeholder -->
+                <div class="md:col-span-5 flex justify-center">
+                    <div class="relative w-64 h-64 md:w-80 md:h-80 rounded-2xl bg-gradient-to-tr from-sky-400 to-indigo-500 dark:from-sky-500 dark:to-indigo-600 p-1 shadow-xl hover:scale-[1.03] transition-transform duration-500 group">
+                        <div class="w-full h-full bg-slate-50 dark:bg-[#111827] rounded-2xl flex flex-col items-center justify-center p-6 text-center">
+                            <!-- Inner Decorative SVG Avatar -->
+                            <svg class="w-24 h-24 text-sky-500 dark:text-sky-400 mb-4 transition-transform duration-500 group-hover:rotate-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <h3 class="text-xl font-bold text-slate-800 dark:text-slate-100">
+                                <span class="lang-ko">진용욱 (YongUk)</span>
+                                <span class="lang-en">YongUk Jin</span>
+                            </h3>
+                            <p class="text-xs text-sky-600 dark:text-sky-400 font-semibold mt-1">
+                                <span class="lang-ko">예비 프론트엔드 엔지니어</span>
+                                <span class="lang-en">Candidate Frontend Engineer</span>
+                            </p>
+                        </div>
                     </div>
                 </div>
-                <!-- About Info Details -->
-                <div class="lg:col-span-7">
-                    <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-4">
-                        <span class="lang-ko">성장하는 즐거움을 아는 동료</span>
-                        <span class="lang-en">A colleague who enjoys continuous growth</span>
+
+                <!-- Right: Text Bio Summary -->
+                <div class="md:col-span-7 flex flex-col justify-center">
+                    <h2 class="text-xs font-bold text-sky-600 dark:text-sky-400 tracking-wider uppercase mb-3">
+                        <span class="lang-ko">나의 소개</span>
+                        <span class="lang-en">About Me</span>
+                    </h2>
+                    <h3 class="text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-white mb-6 leading-tight">
+                        <span class="lang-ko">단단한 기본기 위에<br>사용자 중심의 경험을 설계합니다.</span>
+                        <span class="lang-en">Designing user-centric experiences<br>on top of solid fundamentals.</span>
                     </h3>
-                    <p class="text-slate-600 dark:text-slate-300 text-base mb-6 leading-relaxed text-justify">
-                        <span class="lang-ko">안녕하세요! 끊임없이 도전하며 깊이 파고드는 힘을 가진 진용욱입니다. SSAFY 16기를 목표로 개발 세계에 발을 들여놓은 뒤, 복잡한 문제를 하나씩 풀어갈 때마다 느끼는 짜릿함에 매료되어 매일 성장해 나가고 있습니다.</span>
-                        <span class="lang-en">Hello! I am Yongwook Jin, equipped with the strength to deeply delve into complex problems. After stepping into the developer's realm aiming for SSAFY 16th, I am growing daily, completely fascinated by the thrill of solving challenging engineering issues one by one.</span>
+                    <p class="text-base text-slate-600 dark:text-slate-300 mb-6 leading-relaxed">
+                        <span class="lang-ko">안녕하세요! SSAFY 16기 예비 개발자 진용욱입니다. 저는 단순히 코드를 타이핑하는 것이 아니라, 사용자가 직면한 불편을 해소하고 비즈니스 가치를 극대화할 수 있는 깔끔한 UI/UX를 설계하는 일에 큰 매력을 느낍니다. 견고한 아키텍처와 성능 최적화에 항상 관심을 두고 있습니다.</span>
+                        <span class="lang-en">Hello! I'm YongUk Jin, a candidate developer from the 16th SSAFY. Rather than just typing code, I am fascinated by designing clean UI/UX that solves user problems and maximizes business value. I always focus on robust architecture and performance optimization.</span>
                     </p>
-                    <p class="text-slate-600 dark:text-slate-300 text-base mb-6 leading-relaxed text-justify">
-                        <span class="lang-ko">저는 기술의 한계에 갇히지 않고, 현업의 동료들과 상호 존중하며 즐겁게 협업하는 미래를 그립니다. 안정적인 기술력 위에 건강한 커뮤니케이션 능력을 얹어 최고의 비즈니스 가치를 창출하는 든든한 동료가 되겠습니다.</span>
-                        <span class="lang-en">I envision a future where I don't confine myself within technical limits, but happily collaborate with colleagues while respecting each other. I aim to be a dependable teammate who maximizes business value with reliable software craftsmanship and healthy communication skills.</span>
+                    <p class="text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+                        <span class="lang-ko">매일 새로운 지식을 학습하고 코드 리뷰를 통해 피드백을 수용하는 유연한 태도를 중요하게 생각합니다. 동료들과 활발히 교류하며 함께 성장하는 협업 환경을 지향합니다.</span>
+                        <span class="lang-en">I value a flexible attitude in learning new technologies daily and embracing constructive feedback through code reviews. I aim for an active collaborative environment where we grow together with colleagues.</span>
                     </p>
-                    <div class="border-t border-slate-200 dark:border-gray-800 pt-6 mt-6 grid grid-cols-2 gap-6">
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-sky-50/50 dark:bg-[#111827]/30 border-t border-b border-slate-200/50 dark:border-gray-800/50 py-16 md:py-24">
+            <div class="max-w-[1100px] mx-auto px-6">
+                <div class="text-center max-w-[600px] mx-auto mb-16">
+                    <h2 class="text-xs font-bold text-sky-600 dark:text-sky-400 tracking-wider uppercase mb-3">
+                        <span class="lang-ko">핵심 역량 및 강점</span>
+                        <span class="lang-en">Key Strengths</span>
+                    </h2>
+                    <h3 class="text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-white leading-tight">
+                        <span class="lang-ko">협업과 성장을 이끄는 3가지 강점</span>
+                        <span class="lang-en">Three Strengths Driving Growth</span>
+                    </h3>
+                </div>
+
+                <!-- 3 Strengths Grid Container -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    
+                    <!-- Strength Card 1: 긍정적인 마인드 -->
+                    <div class="bg-white dark:bg-[#111827] border border-slate-200 dark:border-gray-800 rounded-2xl p-8 shadow-sm hover:shadow-lg hover:-translate-y-2 transition-all duration-300 group flex flex-col justify-between">
                         <div>
-                            <strong class="block text-xs text-slate-400 uppercase tracking-widest mb-1">Name</strong>
-                            <span class="text-base font-semibold text-slate-900 dark:text-white lang-ko">진용욱</span>
-                            <span class="text-base font-semibold text-slate-900 dark:text-white lang-en">Yongwook Jin</span>
+                            <div class="w-12 h-12 rounded-xl bg-sky-100 dark:bg-sky-950 flex items-center justify-center text-sky-600 dark:text-sky-400 mb-6 group-hover:scale-110 transition-transform duration-300">
+                                <svg class="w-6 h-6 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </div>
+                            <h4 class="text-lg font-bold text-slate-900 dark:text-white mb-3">
+                                <span class="lang-ko">긍정적인 마인드</span>
+                                <span class="lang-en">Positive Mindset</span>
+                            </h4>
+                            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
+                                <span class="lang-ko">어려운 기술적 벽에 부딪치거나 예측하지 못한 버그가 발생하더라도, 문제를 해결할 기회로 여기며 긍정적이고 의연한 태도를 유지합니다.</span>
+                                <span class="lang-en">Even when facing hard technical walls or unexpected bugs, I view them as opportunities for growth and maintain a constructive, composed attitude.</span>
+                            </p>
                         </div>
+                        <span class="text-xs font-semibold text-sky-600 dark:text-sky-400 flex items-center gap-1">
+                            <span>#Optimistic</span>
+                            <span>#ProblemSolver</span>
+                        </span>
+                    </div>
+
+                    <!-- Strength Card 2: 끝까지 파고드는 집중력 -->
+                    <div class="bg-white dark:bg-[#111827] border border-slate-200 dark:border-gray-800 rounded-2xl p-8 shadow-sm hover:shadow-lg hover:-translate-y-2 transition-all duration-300 group flex flex-col justify-between">
                         <div>
-                            <strong class="block text-xs text-slate-400 uppercase tracking-widest mb-1">Role</strong>
-                            <span class="text-base font-semibold text-slate-900 dark:text-white lang-ko">프론트엔드 개발자</span>
-                            <span class="text-base font-semibold text-slate-900 dark:text-white lang-en">Frontend Developer</span>
+                            <div class="w-12 h-12 rounded-xl bg-sky-100 dark:bg-sky-950 flex items-center justify-center text-sky-600 dark:text-sky-400 mb-6 group-hover:scale-110 transition-transform duration-300">
+                                <svg class="w-6 h-6 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                </svg>
+                            </div>
+                            <h4 class="text-lg font-bold text-slate-900 dark:text-white mb-3">
+                                <span class="lang-ko">끝까지 파고드는 집중력</span>
+                                <span class="lang-en">Deep Focus & Persistence</span>
+                            </h4>
+                            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
+                                <span class="lang-ko">원인을 분석하고 완벽한 해결책을 찾아낼 때까지 깊은 몰입 상태를 유지합니다. 예기치 못한 메모리 누수나 엣지 케이스까지 완벽하게 추적해 내는 끈기를 가지고 있습니다.</span>
+                                <span class="lang-en">I maintain a state of deep immersion until I analyze the root cause and establish a complete solution. I persist to track down minor memory leaks and edge cases.</span>
+                            </p>
                         </div>
+                        <span class="text-xs font-semibold text-sky-600 dark:text-sky-400 flex items-center gap-1">
+                            <span>#DeepFocus</span>
+                            <span>#DetailOriented</span>
+                        </span>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Gallery Section (Representative Projects) -->
-    <section class="py-28 bg-slate-100/50 dark:bg-[#0c111d] border-t border-b border-slate-200 dark:border-gray-800" id="gallery">
-        <div class="max-w-[1100px] mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-2 relative inline-block after:content-[''] after:block after:w-10 after:h-[3px] after:bg-sky-600 dark:after:bg-sky-400 after:mx-auto after:mt-3 after:rounded-sm">
-                    <span class="lang-ko">갤러리</span>
-                    <span class="lang-en">Gallery</span>
-                </h2>
-                <p class="text-slate-500 dark:text-slate-400 text-base md:text-lg mt-3">
-                    <span class="lang-ko">상상 속 아이디어를 직접 제작한 대표 프로젝트입니다</span>
-                    <span class="lang-en">Representative projects bringing imagination to reality</span>
-                </p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Project Card 1 -->
-                <div class="bg-white dark:bg-[#111827] rounded-2xl overflow-hidden shadow-sm border border-slate-200 dark:border-gray-800/80 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:border-sky-600 dark:hover:border-sky-400 flex flex-col group">
-                    <div class="relative w-full h-[200px] overflow-hidden">
-                        <div class="w-full h-full bg-gradient-to-br from-blue-500 to-violet-500"></div>
-                        <div class="absolute inset-0 flex items-center justify-center bg-slate-900/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <svg class="w-10 h-10 stroke-white fill-none stroke-2 translate-y-[10px] group-hover:translate-y-0 transition-transform duration-300" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="16 18 22 12 16 6"></polyline>
-                                <polyline points="8 6 2 12 8 18"></polyline>
-                            </svg>
+                    <!-- Strength Card 3: 무던한 성격 -->
+                    <div class="bg-white dark:bg-[#111827] border border-slate-200 dark:border-gray-800 rounded-2xl p-8 shadow-sm hover:shadow-lg hover:-translate-y-2 transition-all duration-300 group flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 rounded-xl bg-sky-100 dark:bg-sky-950 flex items-center justify-center text-sky-600 dark:text-sky-400 mb-6 group-hover:scale-110 transition-transform duration-300">
+                                <svg class="w-6 h-6 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                                </svg>
+                            </div>
+                            <h4 class="text-lg font-bold text-slate-900 dark:text-white mb-3">
+                                <span class="lang-ko">무던한 성격</span>
+                                <span class="lang-en">Resilient Personality</span>
+                            </h4>
+                            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
+                                <span class="lang-ko">다양한 배경과 성격을 가진 동료들과 열린 대화를 이끌며, 감정 소모 없이 무던하게 협업 과업을 완수해 내는 감정 회복 탄력성과 뛰어난 친화력을 갖추고 있습니다.</span>
+                                <span class="lang-en">I lead open conversations with diverse team members, and complete collaborative tasks smoothly without unnecessary emotional friction, backed by strong mental resilience.</span>
+                            </p>
                         </div>
+                        <span class="text-xs font-semibold text-sky-600 dark:text-sky-400 flex items-center gap-1">
+                            <span>#Resilient</span>
+                            <span>#Easygoing</span>
+                        </span>
                     </div>
-                    <div class="p-6 flex flex-col flex-grow">
-                        <span class="self-start text-xs font-bold text-sky-600 dark:text-sky-400 uppercase tracking-wider mb-2">React / TypeScript</span>
-                        <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">
-                            <span class="lang-ko">스마트 대시보드</span>
-                            <span class="lang-en">Smart Analytics Dashboard</span>
-                        </h3>
-                        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                            <span class="lang-ko">실시간 데이터 스트리밍 가시화 및 위젯 조작이 용이한 관리 통합 관제 솔루션입니다.</span>
-                            <span class="lang-en">An integrated monitoring dashboard enabling real-time data visualization and customizable widgets.</span>
-                        </p>
-                    </div>
-                </div>
 
-                <!-- Project Card 2 -->
-                <div class="bg-white dark:bg-[#111827] rounded-2xl overflow-hidden shadow-sm border border-slate-200 dark:border-gray-800/80 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:border-sky-600 dark:hover:border-sky-400 flex flex-col group">
-                    <div class="relative w-full h-[200px] overflow-hidden">
-                        <div class="w-full h-full bg-gradient-to-br from-cyan-500 to-blue-500"></div>
-                        <div class="absolute inset-0 flex items-center justify-center bg-slate-900/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <svg class="w-10 h-10 stroke-white fill-none stroke-2 translate-y-[10px] group-hover:translate-y-0 transition-transform duration-300" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
-                                <line x1="3" y1="6" x2="21" y2="6"></line>
-                                <path d="M16 10a4 4 0 0 1-8 0"></path>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="p-6 flex flex-col flex-grow">
-                        <span class="self-start text-xs font-bold text-sky-600 dark:text-sky-400 uppercase tracking-wider mb-2">Vue.js / Pinia</span>
-                        <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">
-                            <span class="lang-ko">미니멀 쇼핑몰</span>
-                            <span class="lang-en">Minimalist E-Commerce</span>
-                        </h3>
-                        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                            <span class="lang-ko">화려한 이펙트와 마이크로인터랙션을 접목시킨 모던 쇼핑 플랫폼입니다.</span>
-                            <span class="lang-en">A modern web-store focusing on smooth micro-interactions and sleek catalog structures.</span>
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Project Card 3 -->
-                <div class="bg-white dark:bg-[#111827] rounded-2xl overflow-hidden shadow-sm border border-slate-200 dark:border-gray-800/80 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:border-sky-600 dark:hover:border-sky-400 flex flex-col group">
-                    <div class="relative w-full h-[200px] overflow-hidden">
-                        <div class="w-full h-full bg-gradient-to-br from-pink-500 to-violet-500"></div>
-                        <div class="absolute inset-0 flex items-center justify-center bg-slate-900/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <svg class="w-10 h-10 stroke-white fill-none stroke-2 translate-y-[10px] group-hover:translate-y-0 transition-transform duration-300" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-                                <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
-                                <polyline points="2 17 12 22 22 17"></polyline>
-                                <polyline points="2 12 12 17 22 12"></polyline>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="p-6 flex flex-col flex-grow">
-                        <span class="self-start text-xs font-bold text-sky-600 dark:text-sky-400 uppercase tracking-wider mb-2">HTML5 / Vanilla JS</span>
-                        <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">
-                            <span class="lang-ko">디자인 엔진</span>
-                            <span class="lang-en">Web UI Sandbox</span>
-                        </h3>
-                        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                            <span class="lang-ko">웹 프론트 단독으로 컴포넌트를 조작 및 빌드할 수 있는 최적화된 샌드박스입니다.</span>
-                            <span class="lang-en">A standalone, performant web sandbox built for component crafting and real-time design testing.</span>
-                        </p>
-                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Strengths Section -->
-    <section class="py-28 bg-white dark:bg-[#111827]" id="strengths">
-        <div class="max-w-[1100px] mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-2 relative inline-block after:content-[''] after:block after:w-10 after:h-[3px] after:bg-sky-600 dark:after:bg-sky-400 after:mx-auto after:mt-3 after:rounded-sm">
-                    <span class="lang-ko">주요 강점</span>
-                    <span class="lang-en">Key Strengths</span>
-                </h2>
-                <p class="text-slate-500 dark:text-slate-400 text-base md:text-lg mt-3">
-                    <span class="lang-ko">협업 시 가장 빛을 발하는 저의 독보적인 무기들입니다</span>
-                    <span class="lang-en">These are my greatest assets that shine best during collaborations</span>
-                </p>
-            </div>
+        <section class="max-w-[1100px] mx-auto px-6 py-16 text-center">
+            <h3 class="text-xl md:text-2xl font-bold text-slate-800 dark:text-slate-100 mb-6">
+                <span class="lang-ko">진용욱의 다양한 프로젝트가 궁금하신가요?</span>
+                <span class="lang-en">Want to check out YongUk's projects?</span>
+            </h3>
+            <a href="gallery.html" class="inline-flex items-center justify-center px-7 py-3 rounded-full text-sm font-semibold transition-all duration-300 transform hover:-translate-y-1 hover:scale-[1.02] bg-sky-600 text-white shadow-lg shadow-sky-600/20 hover:shadow-sky-600/35 active:translate-y-0">
+                <span class="lang-ko">갤러리 페이지 이동하기</span>
+                <span class="lang-en">Go to Gallery Page</span>
+            </a>
+        </section>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Strength 1 -->
-                <div class="bg-slate-50 dark:bg-[#0c111d] rounded-2xl p-10 shadow-sm border border-slate-200 dark:border-gray-800 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:border-sky-600 dark:hover:border-sky-400 hover:bg-white dark:hover:bg-gray-900 flex flex-col items-start group">
-                    <div class="w-14 h-14 rounded-xl bg-sky-100 dark:bg-sky-950 text-sky-600 dark:text-sky-400 flex items-center justify-center mb-6 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">
-                        <svg class="w-7 h-7 fill-none stroke-current stroke-2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
-                            <line x1="9" y1="9" x2="9.01" y2="9"></line>
-                            <line x1="15" y1="9" x2="15.01" y2="9"></line>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">
-                        <span class="lang-ko">긍정적인 마인드</span>
-                        <span class="lang-en">Positive Mindset</span>
-                    </h3>
-                    <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed text-justify">
-                        <span class="lang-ko">실패나 버그를 마주했을 때 좌절하기보단 문제를 정확하게 정의하고 한 단계 성장할 수 있는 디딤돌로 여깁니다. 긍정적인 에너지는 팀 내 협업 분위기까지 밝게 만듭니다.</span>
-                        <span class="lang-en">Rather than getting frustrated when facing issues or bugs, I define them clearly and treat them as stepping stones for growth. My positive vibe enhances team productivity.</span>
-                    </p>
-                </div>
+    </main>
 
-                <!-- Strength 2 -->
-                <div class="bg-slate-50 dark:bg-[#0c111d] rounded-2xl p-10 shadow-sm border border-slate-200 dark:border-gray-800 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:border-sky-600 dark:hover:border-sky-400 hover:bg-white dark:hover:bg-gray-900 flex flex-col items-start group">
-                    <div class="w-14 h-14 rounded-xl bg-sky-100 dark:bg-sky-950 text-sky-600 dark:text-sky-400 flex items-center justify-center mb-6 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">
-                        <svg class="w-7 h-7 fill-none stroke-current stroke-2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <circle cx="12" cy="12" r="6"></circle>
-                            <circle cx="12" cy="12" r="2"></circle>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">
-                        <span class="lang-ko">끝까지 파고드는 집중력</span>
-                        <span class="lang-en">Unyielding Focus</span>
-                    </h3>
-                    <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed text-justify">
-                        <span class="lang-ko">어려운 난제나 복잡한 알고리즘을 만났을 때, 원인을 집요하게 추적하여 완벽한 해결책을 기어이 찾고 맙니다. 대충 넘어가지 않고 원리부터 깊숙이 파고드는 집요함이 장점입니다.</span>
-                        <span class="lang-en">When facing sophisticated algorithmic issues, I persistently chase the root cause until finding a pristine solution. I deeply analyze basic principles rather than cutting corners.</span>
-                    </p>
-                </div>
-
-                <!-- Strength 3 -->
-                <div class="bg-slate-50 dark:bg-[#0c111d] rounded-2xl p-10 shadow-sm border border-slate-200 dark:border-gray-800 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:border-sky-600 dark:hover:border-sky-400 hover:bg-white dark:hover:bg-gray-900 flex flex-col items-start group">
-                    <div class="w-14 h-14 rounded-xl bg-sky-100 dark:bg-sky-950 text-sky-600 dark:text-sky-400 flex items-center justify-center mb-6 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">
-                        <svg class="w-7 h-7 fill-none stroke-current stroke-2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">
-                        <span class="lang-ko">무던한 성격</span>
-                        <span class="lang-en">Calm & Solid Personality</span>
-                    </h3>
-                    <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed text-justify">
-                        <span class="lang-ko">기복이 없고 차분하며, 감정에 휩쓸리지 않는 단단한 성격입니다. 긴박한 일정 관리나 피드백 조율 과정 속에서도 평정심을 유지하며 팀에 최고의 편안함과 안정감을 선사합니다.</span>
-                        <span class="lang-en">I have an even-tempered, calm, and emotionally stable personality. I maintain peace of mind even in tight deadlines or critical feedback loops, providing solid comfort to my team.</span>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact / CTA Section -->
-    <section class="relative bg-gradient-to-br from-sky-600 to-sky-700 dark:from-sky-800 dark:to-sky-950 text-white text-center py-24 z-10" id="contact">
-        <div class="max-w-[1100px] mx-auto px-6">
-            <div class="text-center mb-10">
-                <h2 class="text-3xl md:text-4xl font-extrabold text-white tracking-tight mb-2 relative inline-block after:content-[''] after:block after:w-10 after:h-[3px] after:bg-white after:mx-auto after:mt-3 after:rounded-sm">
-                    <span class="lang-ko">함께 시너지를 낼 준비가 되었나요?</span>
-                    <span class="lang-en">Ready to make a great synergy?</span>
-                </h2>
-                <p class="text-white/80 text-base md:text-lg mt-3">
-                    <span class="lang-ko">성장하는 내일을 위해 언제나 소중한 피드백과 연락을 환영합니다.</span>
-                    <span class="lang-en">I always welcome valuable feedback and collaboration inquiries.</span>
-                </p>
-            </div>
-            
-            <div class="mb-10">
-                <a href="mailto:yongwook@example.com" class="inline-flex items-center justify-center px-7 py-3 rounded-full text-sm font-semibold bg-white text-sky-600 hover:bg-sky-50 dark:bg-gray-900 dark:text-sky-400 dark:hover:bg-gray-800 transition-all duration-300 transform hover:-translate-y-1 hover:scale-[1.02]">
-                    <span class="lang-ko">이메일 발송하기</span>
-                    <span class="lang-en">Send Email</span>
-                </a>
-            </div>
-
-            <!-- Contact detail links -->
-            <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-8 flex flex-col md:flex-row gap-8 justify-center items-center mt-8 shadow-xl max-w-[500px] md:max-w-none mx-auto">
-                <a href="mailto:yongwook@example.com" class="flex items-center gap-3 font-semibold text-base text-white transition-transform duration-300 hover:-translate-y-0.5">
-                    <svg class="w-5 h-5 fill-none stroke-current stroke-2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                        <polyline points="22,6 12,13 2,6"></polyline>
-                    </svg>
-                    <span>yongwook@example.com</span>
-                </a>
-                <a href="https://github.com/YongWook" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 font-semibold text-base text-white transition-transform duration-300 hover:-translate-y-0.5">
-                    <svg class="w-5 h-5 fill-none stroke-current stroke-2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                    </svg>
-                    <span>github.com/YongWook</span>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer Section -->
-    <footer class="bg-[#0c111d] border-t border-slate-800 text-slate-400 py-12">
+    <footer class="bg-[#0c111d] border-t border-slate-800 text-slate-400 py-10 w-full relative z-10">
         <div class="max-w-[1100px] mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
-            <a href="#" class="text-white font-extrabold text-base tracking-tight">
+            <a href="index.html" class="text-white font-extrabold text-base tracking-tight hover:scale-105 transition-transform duration-300 block">
                 진용욱<span class="text-sky-600 dark:text-sky-400">.dev</span>
             </a>
-            <p class="text-sm">&copy; 2026 Jin Yong-wook. All rights reserved.</p>
+            <p class="text-xs md:text-sm">&copy; 2026 Jin Yong-Uk. All rights reserved.</p>
         </div>
     </footer>
 
-    <!-- Dynamic Functionality Script -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             
             // 1. Language Toggle Mechanism (KO / EN)
             const langToggleBtn = document.getElementById('lang-toggle');
             
-            // Load saved language or default to 'ko'
+            // 저장된 언어 확인 및 상태 동기화
             const savedLang = localStorage.getItem('portfolio-lang') || 'ko';
             document.body.className = document.body.className.replace(/lang-(ko|en)/, '') + ` lang-${savedLang}`;
 
@@ -475,18 +326,8 @@
             });
 
 
-            // 2. Dark / Light Theme Toggle Mechanism with Tailwind Class support
+            // 2. Dark / Light Theme Toggle Mechanism
             const themeToggleBtn = document.getElementById('theme-toggle');
-            
-            // Load saved theme or default to system preference
-            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            const savedTheme = localStorage.getItem('portfolio-theme');
-            
-            if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
-                document.documentElement.classList.add('dark');
-            } else {
-                document.documentElement.classList.remove('dark');
-            }
 
             themeToggleBtn.addEventListener('click', () => {
                 document.documentElement.classList.toggle('dark');
@@ -495,10 +336,10 @@
             });
 
 
-            // 3. Mobile Navigation Menu Toggle Drawer (Tailwind Translation based)
+            // 3. Mobile Navigation Menu Toggle Drawer
             const menuToggle = document.getElementById('menu-toggle');
             const mobileOverlay = document.getElementById('mobile-menu-overlay');
-            const navLinks = mobileOverlay.querySelectorAll('.nav-link');
+            const navLinks = mobileOverlay.querySelectorAll('a');
 
             const toggleMobileMenu = () => {
                 menuToggle.classList.toggle('active');
@@ -511,7 +352,7 @@
 
             menuToggle.addEventListener('click', toggleMobileMenu);
 
-            // Close mobile menu drawer on selecting a link
+            // 드로워가 열린 상태에서 링크 클릭 시 자동으로 드로워 닫기
             navLinks.forEach(link => {
                 link.addEventListener('click', () => {
                     menuToggle.classList.remove('active');
@@ -520,31 +361,7 @@
             });
 
 
-            // 4. Custom Smooth Navigation Scroll Behavior to offset sticky Header height
-            const scrollTriggers = document.querySelectorAll('.nav-link, a[href^="#"]');
-            
-            scrollTriggers.forEach(trigger => {
-                trigger.addEventListener('click', function(e) {
-                    const targetHref = this.getAttribute('href');
-                    
-                    if (targetHref && targetHref.startsWith('#')) {
-                        e.preventDefault();
-                        const targetId = targetHref.substring(1);
-                        const targetElement = document.getElementById(targetId || 'home');
-                        
-                        if (targetElement) {
-                            const offsetTop = targetElement.offsetTop - 72; // Adjusted height for sticky navbar header (18rem/4 = 72px)
-                            window.scrollTo({
-                                top: offsetTop,
-                                behavior: 'smooth'
-                            });
-                        }
-                    }
-                });
-            });
-
-
-            // 5. Active Header shadow transition on Scroll
+            // 4. Active Header shadow transition on Scroll
             const header = document.getElementById('header');
             window.addEventListener('scroll', () => {
                 if (window.scrollY > 40) {
