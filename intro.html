@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>진용욱 | SSAFY 예비 개발자 포트폴리오</title>
+    <style>
+        /* CSS Reset & System Font Stack */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans KR", sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+            color: #1e293b; /* slate-800 */
+            background-color: #f8fafc; /* slate-50 */
+            line-height: 1.6;
+        }
+
+        body {
+            overflow-x: hidden;
+        }
+
+        /* Color Tokens (Light Blue & White theme) */
+        :root {
+            --primary: #0284c7;        /* Sky 600 */
+            --primary-hover: #0369a1;  /* Sky 700 */
+            --primary-light: #e0f2fe;  /* Sky 100 */
+            --bg-light: #f0f9ff;       /* Sky 50 */
+            --white: #ffffff;
+            --text-main: #0f172a;      /* Slate 900 */
+            --text-sub: #475569;       /* Slate 600 */
+            --text-muted: #64748b;     /* Slate 500 */
+            --border: #e2e8f0;         /* Slate 200 */
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 10px 15px -3px rgba(2, 132, 199, 0.08), 0 4px 6px -4px rgba(2, 132, 199, 0.08);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Global Layout Components */
+        .container {
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        section {
+            padding: 7rem 0;
+        }
+
+        /* Buttons & Interactions */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.85rem 2rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            outline: none;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: var(--white);
+            box-shadow: 0 4px 14px rgba(2, 132, 199, 0.3);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(2, 132, 199, 0.4);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary-light);
+            transform: translateY(-2px);
+        }
+
+        /* Header Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .nav-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 4.5rem;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--primary);
+            letter-spacing: -0.05em;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-sub);
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--white) 0%, var(--bg-light) 100%);
+            padding-top: 10rem;
+            padding-bottom: 8rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Decorative Background shapes (Pure CSS) */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -10%;
+            right: -5%;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(2,132,199,0.06) 0%, rgba(255,255,255,0) 70%);
+            pointer-events: none;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -5%;
+            left: -5%;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(2,132,199,0.05) 0%, rgba(255,255,255,0) 70%);
+            pointer-events: none;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.4rem 1.2rem;
+            background-color: var(--primary-light);
+            color: var(--primary);
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.01em;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            line-height: 1.2;
+            color: var(--text-main);
+            letter-spacing: -0.03em;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 span {
+            color: var(--primary);
+        }
+
+        .hero-lead {
+            font-size: clamp(1.1rem, 2vw, 1.35rem);
+            color: var(--text-sub);
+            margin-bottom: 2.5rem;
+            font-weight: 400;
+        }
+
+        .hero-cta-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        /* Section Heading */
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.25rem;
+            font-weight: 800;
+            color: var(--text-main);
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+        }
+
+        /* About Section CSS */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        /* Placeholder Avatar styling (Perfect CSS Placeholder with brand identity) */
+        .avatar-placeholder {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            background: linear-gradient(135deg, var(--primary-light) 0%, #bae6fd 100%);
+            border-radius: 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            border: 4px solid var(--white);
+        }
+
+        .avatar-placeholder svg {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 1rem;
+            opacity: 0.85;
+        }
+
+        .avatar-placeholder span {
+            font-weight: 700;
+            font-size: 1.1rem;
+            background-color: rgba(255,255,255,0.7);
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+        }
+
+        .about-content h3 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 1rem;
+        }
+
+        .about-text {
+            color: var(--text-sub);
+            font-size: 1.05rem;
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        .about-meta {
+            border-top: 1px solid var(--border);
+            padding-top: 1.5rem;
+            margin-top: 1.5rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .meta-item strong {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .meta-item span {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        /* Strengths Section CSS */
+        .strengths {
+            background-color: var(--bg-light);
+        }
+
+        .strengths-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .strength-card {
+            background-color: var(--white);
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .strength-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-light);
+        }
+
+        .icon-box {
+            width: 3.5rem;
+            height: 3.5rem;
+            border-radius: 12px;
+            background-color: var(--primary-light);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .icon-box svg {
+            width: 1.75rem;
+            height: 1.75rem;
+        }
+
+        .strength-card h3 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 0.75rem;
+        }
+
+        .strength-card p {
+            color: var(--text-sub);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%);
+            color: var(--white);
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-section .section-header h2 {
+            color: var(--white);
+        }
+
+        .cta-section .section-header p {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .contact-box {
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            border-radius: 16px;
+            padding: 2rem;
+            display: inline-flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 500;
+            font-size: 1.05rem;
+        }
+
+        .contact-item svg {
+            width: 1.25rem;
+            height: 1.25rem;
+            fill: currentColor;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #0f172a; /* Slate 900 */
+            color: #94a3b8;            /* Slate 400 */
+            padding: 3rem 0;
+            border-top: 1px solid #1e293b;
+        }
+
+        .footer-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .footer-logo {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .footer-logo span {
+            color: var(--primary);
+        }
+
+        .copyright {
+            font-size: 0.875rem;
+        }
+
+        /* Responsive Media Queries */
+        @media (max-width: 992px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .avatar-placeholder {
+                max-width: 400px;
+                margin: 0 auto;
+            }
+
+            .strengths-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: 5rem 0;
+            }
+
+            .nav-menu {
+                display: none; /* Simplifies navigation on mobile for offline consistency */
+            }
+
+            .hero {
+                padding-top: 8rem;
+                padding-bottom: 6rem;
+            }
+
+            .hero h1 {
+                font-size: 2.25rem;
+            }
+
+            .hero-cta-group {
+                flex-direction: column;
+                align-items: stretch;
+                max-width: 320px;
+                margin: 0 auto;
+            }
+
+            .strengths-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-box {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+                width: 100%;
+                max-width: 360px;
+            }
+
+            .footer-wrapper {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header id="header">
+        <div class="container nav-wrapper">
+            <a href="#" class="logo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m8 3 4 8 5-5 5 15H2L8 3z"/></svg>
+                진용욱.dev
+            </a>
+            <ul class="nav-menu">
+                <li><a href="#" class="nav-link">홈</a></li>
+                <li><a href="#about" class="nav-link">소개</a></li>
+                <li><a href="#strengths" class="nav-link">강점</a></li>
+                <li><a href="#contact" class="nav-link">연락처</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-badge">SSAFY 16기 예비 개발자</div>
+            <h1>매일 발전하는<br><span>준비된 개발자 진용욱</span>입니다.</h1>
+            <p class="hero-lead">성장에 목마른 태도로 매일 견고한 코드를 작성해 나가고 있습니다.</p>
+            <div class="hero-cta-group">
+                <a href="#about" class="btn btn-primary js-scroll-trigger">자세히 알아보기</a>
+                <a href="#contact" class="btn btn-outline js-scroll-trigger">함께 일하기</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="section-header">
+                <h2>About Me</h2>
+                <p>기본을 탄탄하게, 소통은 유연하게</p>
+            </div>
+            <div class="about-grid">
+                <!-- Color-Box Avatar Placeholder as requested -->
+                <div class="avatar-placeholder">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    <span>진용욱 (YongUk Jin)</span>
+                </div>
+                <div class="about-content">
+                    <h3>성장하는 즐거움을 아는 동료</h3>
+                    <p class="about-text">
+                        안녕하세요! 끊임없이 도전하며 깊이 파고드는 힘을 가진 진용욱입니다. SSAFY 16기를 목표로 개발 세계에 발을 들여놓은 뒤, 복잡한 문제를 하나씩 풀어갈 때마다 느끼는 짜릿함에 매료되어 매일 성장해 나가고 있습니다.
+                    </p>
+                    <p class="about-text">
+                        저는 기술의 한계에 갇히지 않고, 현업의 동료들과 상호 존중하며 즐겁게 협업하는 미래를 그립니다. 안정적인 기술력 위에 건강한 커뮤니케이션 능력을 얹어 최고의 비즈니스 가치를 창출하는 든든한 동료가 되겠습니다.
+                    </p>
+                    <div class="about-meta">
+                        <div class="meta-item">
+                            <strong>Name</strong>
+                            <span>진용욱</span>
+                        </div>
+                        <div class="meta-item">
+                            <strong>Role</strong>
+                            <span>FullStack Developer</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Strengths Section -->
+    <section class="strengths" id="strengths">
+        <div class="container">
+            <div class="section-header">
+                <h2>My Key Strengths</h2>
+                <p>협업 시 가장 빛을 발하는 저의 독보적인 무기들입니다</p>
+            </div>
+            <div class="strengths-grid">
+                <!-- Strength 1 -->
+                <div class="strength-card">
+                    <div class="icon-box">
+                        <!-- Smiley Icon representing positivity -->
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>
+                    </div>
+                    <h3>긍정적인 마인드</h3>
+                    <p>실패나 버그를 마주했을 때 좌절하기보단 문제를 정확하게 정의하고 한 단계 성장할 수 있는 디딤돌로 여깁니다. 긍정적인 에너지는 팀 내 협업 분위기까지 밝게 만듭니다.</p>
+                </div>
+                <!-- Strength 2 -->
+                <div class="strength-card">
+                    <div class="icon-box">
+                        <!-- Target/Focus Icon representing concentration -->
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+                    </div>
+                    <h3>끝까지 파고드는 집중력</h3>
+                    <p>어려운 난제나 복잡한 알고리즘을 만났을 때, 원인을 집요하게 추적하여 완벽한 해결책을 기어이 찾고 맙니다. 대충 넘어가지 않고 원리부터 깊숙이 파고드는 집요함이 장점입니다.</p>
+                </div>
+                <!-- Strength 3 -->
+                <div class="strength-card">
+                    <div class="icon-box">
+                        <!-- Shield/Anchor Icon representing calm and easygoing nature -->
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                    </div>
+                    <h3>무던한 성격</h3>
+                    <p>기복이 없고 차분하며, 감정에 휩쓸리지 않는 단단한 성격입니다. 긴박한 일정 관리나 피드백 조율 과정 속에서도 평정심을 유지하며 팀에 최고의 편안함과 안정감을 선사합니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact / CTA Section -->
+    <section class="cta-section" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>함께 시너지를 낼 준비가 되었나요?</h2>
+                <p>성장하는 내일을 위해 언제나 소중한 피드백과 연락을 환영합니다.</p>
+            </div>
+            <div>
+                <a href="mailto:roadlroal@naver.com" class="btn" style="background-color: var(--white); color: var(--primary);">이메일 발송하기</a>
+            </div>
+            <div class="contact-box">
+                <div class="contact-item">
+                    <!-- Email icon -->
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                    <span>roadlroal@naver.com</span>
+                </div>
+                <div class="contact-item">
+                    <!-- GitHub icon -->
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                    <span>github.com/roadl</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-wrapper">
+            <a href="#" class="footer-logo">
+                진용욱<span>.dev</span>
+            </a>
+            <p class="copyright">&copy; 2026 Jin Yong-Uk. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Smooth scroll for anchors
+            const scrollTriggers = document.querySelectorAll('.js-scroll-trigger, .nav-link, .btn-primary, .btn-outline');
+            
+            scrollTriggers.forEach(trigger => {
+                trigger.addEventListener('click', function(e) {
+                    const targetHref = this.getAttribute('href');
+                    
+                    if (targetHref && targetHref.startsWith('#')) {
+                        e.preventDefault();
+                        const targetId = targetHref.substring(1);
+                        const targetElement = document.getElementById(targetId || 'home');
+                        
+                        if (targetElement) {
+                            const offsetTop = targetElement.offsetTop - 72; // Adjust for sticky navigation header
+                            window.scrollTo({
+                                top: offsetTop,
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
+                });
+            });
+
+            // Active State Header Styling on Scroll
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.style.boxShadow = 'var(--shadow-md)';
+                    header.style.backgroundColor = 'rgba(255, 255, 255, 0.98)';
+                } else {
+                    header.style.boxShadow = 'none';
+                    header.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
